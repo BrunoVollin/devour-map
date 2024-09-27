@@ -3,7 +3,8 @@ import UpdatePieceLocation from "./usecase/UpdatePieceLocation";
 import FileGameRepository from "./repository/FileGameRepository";
 import CreateGame from "./usecase/CreateGame";
 import FileGameDTO from "./DTO/FileGameDTO";
-const PORT = 3030;
+
+const PORT = Number(process.env.PORT) || 3000;
 const server = new WebSocketServer.Server({ port: PORT });
 const rooms: { [roomName: string]: Set<WebSocket> } = {};
 
