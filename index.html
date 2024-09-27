@@ -1,65 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="fm.selector.jquery.css" />
-    <title>Devour Map</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Devour Map</title>
+    </head>
+    <body>
+        <div id="row">
+            <div id="1" class="ui-widget-content">
+                <img src="images/bode.png" alt="" height="50" />
+            </div>
+            <div id="2" class="ui-widget-content">
+                <img src="images/caveira.png" alt="" height="50" />
+            </div>
+            <div id="3" class="ui-widget-content">
+                <img src="images/adaga.png" alt="" height="50" />
+            </div>
+            <div id="4" class="ui-widget-content">
+                <img src="images/cruz2.png" alt="" height="50" />
+            </div>
+            <div id="5" class="ui-widget-content">
+                <img src="images/piramide.png" alt="" height="50" />
+            </div>
+            <div id="6" class="ui-widget-content">
+                <img src="images/pentagrama.png" alt="" height="50" />
+            </div>
+            <div id="7" class="ui-widget-content">
+                <img src="images/olho.png" alt="" height="50" />
+            </div>
+            <div id="8" class="ui-widget-content">
+                <img src="images/ampulheta.png" alt="" height="50" />
+            </div>
+            <div id="9" class="ui-widget-content">
+                <img src="images/fogo.png" alt="" height="50" />
+            </div>
+            <div id="10" class="ui-widget-content">
+                <img src="images/dragao.png" alt="" height="50" />
+            </div>
+        </div>
+        <img src="mapa.png" alt="Map" id="map" />
 
-  <body>
-    <div id="row">
-      <div id="meudiv" class="ui-widget-content">
-        <img src="images/bode.png" alt="" height="50" />
-      </div>
-      <div id="meudiv1" class="ui-widget-content">
-        <img src="images/caveira.png" alt="" height="50" />
-      </div>
-      <div id="meudiv2" class="ui-widget-content">
-        <img src="images/adaga.png" alt="" height="50" />
-      </div>
-      <div id="meudiv3" class="ui-widget-content">
-        <img src="images/cruz2.png" alt="" height="50" />
-      </div>
-      <div id="meudiv4" class="ui-widget-content">
-        <img src="images/piramide.png" alt="" height="50" />
-      </div>
-      <div id="meudiv5" class="ui-widget-content">
-        <img src="images/pentagrama.png" alt="" height="50" />
-      </div>
-      <div id="meudiv6" class="ui-widget-content">
-        <img src="images/olho.png" alt="" height="50" />
-      </div>
-      <div id="meudiv7" class="ui-widget-content">
-        <img src="images/ampulheta.png" alt="" height="50" />
-      </div>
-      <div id="meudiv8" class="ui-widget-content">
-        <img src="images/fogo.png" alt="" height="50" />
-      </div>
-      <div id="meudiv9" class="ui-widget-content">
-        <img src="images/dragao.png" alt="" height="50" />
-      </div>
+        <div class="flex flex-col gap-2 border-2 p-2 absolute right-10 bottom-10">
+            <p class="text-white">Join or create</p>
+            <label class="text-white">Name</label>
+            <input type="text" id="fname" name="fname" />
+            <button class="bg-white">Join or Create</button>
+        </div>
 
-    </div>
-    <img src="mapa.png" alt="" id="map"/>
-    <script>
-      $(function () {
-        $("#meudiv").draggable();
-        $("#meudiv1").draggable();
-        $("#meudiv2").draggable();
-        $("#meudiv3").draggable();
-        $("#meudiv4").draggable();
-        $("#meudiv5").draggable();
-        $("#meudiv6").draggable();
-        $("#meudiv7").draggable();
-        $("#meudiv8").draggable();
-        $("#meudiv9").draggable();
-        $("#meudiv10").draggable();
-      });
-    </script>
-  </body>
+        <style></style>
+
+        <script>
+            let socket;
+
+            function initializeWebSocket() {
+                socket = new WebSocket("ws://devour-j97glh45c-brunovollins-projects.vercel.app");
+
+                // Quando a conexão é estabelecida
+                socket.addEventListener("open", function () {
+                    console.log("Conectado ao servidor WebSocket");
+
+                });
+
+                // Quando uma mensagem é recebida do servidor
+                socket.addEventListener("message", function (event) {
+                    const data = JSON.parse(event.data);
+                    if (data.type === "boardState") {
+                        // Atualiza a posição de todas as peças
+                        data.pieces.forEach((piece) => {
+                            const element = document.getElementById(piece.id);
+                            if (element) {
+                                $(element).css({ left: piece.x, top: piece.y });
+                            }
+                        });
+                    } else if (data.type === "pieceMoved") {
+                        // Atualiza a posição da peça movida
+                        const { pieceId, x, y } = data;
+                        const element = document.getElementById(pieceId);
+                        if (element) {
+                            $(element).css({ left: x, top: y });
+                        }
+                    }
+                });
+            }
+
+            function joinRoom() {
+              const roomName = document.getElementById("fname").value;
+              if (socket.readyState === WebSocket.OPEN) {
+                socket.send(
+                  JSON.stringify({ type: "join", room: roomName })
+                );
+                console.log(`Joined room: ${roomName}`);
+
+                // Remove the previous room name display if it exists
+                const previousRoomNameDisplay = document.getElementById("roomNameDisplay");
+                if (previousRoomNameDisplay) {
+                  previousRoomNameDisplay.remove();
+                }
+
+                const roomNameDisplay = document.createElement("h1");
+                roomNameDisplay.id = "roomNameDisplay";
+                roomNameDisplay.textContent = `Room: ${roomName}`;
+                roomNameDisplay.classList.add(
+                  "text-white",
+                  "text-2xl",
+                  "mb-4"
+                );
+                document.body.insertBefore(
+                  roomNameDisplay,
+                  document.body.firstChild
+                );
+              } else {
+                console.log(
+                  "WebSocket não está aberto. Não é possível entrar na sala."
+                );
+              }
+            }
+
+            document
+                .querySelector("button")
+                .addEventListener("click", joinRoom);
+
+            // Inicializa a conexão WebSocket
+            try {
+                initializeWebSocket();
+            } catch (err) {
+                console.log(err);
+            }
+
+            // Torna os elementos arrastáveis
+            $(function () {
+                $(".ui-widget-content").draggable({
+                    stop: function (event, ui) {
+                        const pieceId = event.target.id;
+                        const { left, top } = ui.position;
+
+                        // Enviar nova posição para o servidor somente se a conexão estiver aberta
+                        if (socket.readyState === WebSocket.OPEN) {
+                            socket.send(
+                                JSON.stringify({
+                                    type: "movePiece",
+                                    pieceId: pieceId,
+                                    x: left,
+                                    y: top,
+                                })
+                            );
+                        } else {
+                            console.log(
+                                "WebSocket não está aberto. Não é possível enviar a mensagem."
+                            );
+                        }
+                    },
+                });
+            });
+        </script>
+    </body>
 </html>
