@@ -7,39 +7,51 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://raheelize.github.io/CrispyToastJS/crispy-toast.css"
+        />
+        <script src="https://raheelize.github.io/CrispyToastJS/crispy-toast.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <title>Devour Map</title>
     </head>
     <body>
         <div id="row">
             <div id="1" class="ui-widget-content">
-                <img src="images/manor/1.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/1.jpg" alt="" class="manor-images" />
             </div>
             <div id="2" class="ui-widget-content">
-                <img src="images/manor/2.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/2.jpg" alt="" class="manor-images" />
             </div>
             <div id="3" class="ui-widget-content">
-                <img src="images/manor/3.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/3.jpg" alt="" class="manor-images" />
             </div>
             <div id="4" class="ui-widget-content">
-                <img src="images/manor/4.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/4.jpg" alt="" class="manor-images" />
             </div>
             <div id="5" class="ui-widget-content">
-                <img src="images/manor/5.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/5.jpg" alt="" class="manor-images" />
             </div>
             <div id="6" class="ui-widget-content">
-                <img src="images/manor/6.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/6.jpg" alt="" class="manor-images" />
             </div>
             <div id="7" class="ui-widget-content">
-                <img src="images/manor/7.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/7.jpg" alt="" class="manor-images" />
             </div>
             <div id="8" class="ui-widget-content">
-                <img src="images/manor/8.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/8.jpg" alt="" class="manor-images" />
             </div>
             <div id="9" class="ui-widget-content">
                 <img src="images/manor/9.jpg" alt="" class="manor-images" />
             </div>
             <div id="10" class="ui-widget-content">
-                <img src="images/manor/10.jpg" alt="" class="manor-images"/>
+                <img src="images/manor/10.jpg" alt="" class="manor-images" />
             </div>
         </div>
         <img src="images/manor/mapa.png" alt="Map" id="manor-map" />
@@ -53,7 +65,17 @@
         >
             <p class="text-white">Game room</p>
             <label class="text-white">Name</label>
-            <input type="text" id="fname" name="fname" />
+            <div class="flex gap-2">
+                <input type="text" id="fname" name="fname" />
+
+                <i
+                    class="fas fa-copy text-white cursor-pointer"
+                    onclick="copyToClipboard()"
+                    texto quando passar por cima 
+                    title="Copy to clipboard"
+                ></i>
+                
+            </div>
             <button class="bg-white" id="join_button">Join</button>
             <button class="bg-white" id="create_button">Create</button>
         </div>

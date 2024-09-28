@@ -29,6 +29,7 @@ function initializeWebSocket() {
 
     socket.addEventListener("close", function () {
         console.log("Desconectado do servidor WebSocket");
+        CrispyToast.warning("Desconnected from the server");
         const roomNameDisplay = document.getElementById("roomNameDisplay");
         if (roomNameDisplay) {
             roomNameDisplay.textContent = "Offline";
@@ -44,6 +45,12 @@ function joinRoom() {
     }
 
     const roomName = document.getElementById("fname").value;
+
+    if (!roomName || roomName.length < 6) {
+        CrispyToast.error("Room name must have at least 6 characters");
+        return;
+    }
+
     if (socket && socket.readyState === WebSocket.OPEN) {
         socket.send(JSON.stringify({ type: "join", room: roomName }));
         console.log(`Joined room: ${roomName}`);
@@ -67,6 +74,7 @@ function joinRoom() {
             "z-10"
         );
         document.body.insertBefore(roomNameDisplay, document.body.firstChild);
+        CrispyToast.success(`Online in the room ${roomName}`);
     } else {
         console.log(
             "WebSocket não está aberto. Não é possível entrar na sala."
@@ -142,3 +150,17 @@ document.querySelector("#join_button").addEventListener("click", joinRoom);
 document
     .querySelector("#create_button")
     .addEventListener("click", handleClickgenerateNewGame);
+
+const copyToClipboard = () => {
+    var copyText = document.getElementById("fname");
+
+
+
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    navigator.clipboard.writeText(copyText.value).then(() => {
+        CrispyToast.success("Copied to clipboard");
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+};
