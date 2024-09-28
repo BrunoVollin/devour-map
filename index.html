@@ -47,10 +47,11 @@
         <div
             class="flex flex-col gap-2 border-2 p-2 absolute right-10 bottom-10"
         >
-            <p class="text-white">Join or create</p>
+            <p class="text-white">Game room</p>
             <label class="text-white">Name</label>
             <input type="text" id="fname" name="fname" />
-            <button class="bg-white">Join or Create</button>
+            <button class="bg-white" id="join_button">Join</button>
+            <button class="bg-white" id="create_button">Create</button>
         </div>
 
         <div
@@ -64,111 +65,6 @@
 
         <style></style>
 
-        <script>
-            let socket;
-
-            function initializeWebSocket() {
-                socket = new WebSocket(
-                    "wss://ab75-189-126-230-33.ngrok-free.app"
-                );
-
-                // Quando a conexão é estabelecida
-                socket.addEventListener("open", function () {
-                    console.log("Conectado ao servidor WebSocket");
-                });
-
-                // Quando uma mensagem é recebida do servidor
-                socket.addEventListener("message", function (event) {
-                    const data = JSON.parse(event.data);
-                    if (data.type === "boardState") {
-                        // Atualiza a posição de todas as peças
-                        data.pieces.forEach((piece) => {
-                            const element = document.getElementById(piece.id);
-                            if (element) {
-                                $(element).css({ left: piece.x, top: piece.y });
-                            }
-                        });
-                    } else if (data.type === "pieceMoved") {
-                        // Atualiza a posição da peça movida
-                        const { pieceId, x, y } = data;
-                        const element = document.getElementById(pieceId);
-                        if (element) {
-                            $(element).css({ left: x, top: y });
-                        }
-                    }
-                });
-            }
-
-            function joinRoom() {
-                const roomName = document.getElementById("fname").value;
-                if (socket.readyState === WebSocket.OPEN) {
-                    socket.send(
-                        JSON.stringify({ type: "join", room: roomName })
-                    );
-                    console.log(`Joined room: ${roomName}`);
-
-                    // Remove the previous room name display if it exists
-                    const previousRoomNameDisplay =
-                        document.getElementById("roomNameDisplay");
-                    if (previousRoomNameDisplay) {
-                        previousRoomNameDisplay.remove();
-                    }
-
-                    const roomNameDisplay = document.createElement("h1");
-                    roomNameDisplay.id = "roomNameDisplay";
-                    roomNameDisplay.textContent = `Room: ${roomName}`;
-                    roomNameDisplay.classList.add(
-                        "text-white",
-                        "text-2xl",
-                        "mb-4"
-                    );
-                    document.body.insertBefore(
-                        roomNameDisplay,
-                        document.body.firstChild
-                    );
-                } else {
-                    console.log(
-                        "WebSocket não está aberto. Não é possível entrar na sala."
-                    );
-                }
-            }
-
-            document
-                .querySelector("button")
-                .addEventListener("click", joinRoom);
-
-            // Inicializa a conexão WebSocket
-            try {
-                initializeWebSocket();
-            } catch (err) {
-                console.log(err);
-            }
-
-            // Torna os elementos arrastáveis
-            $(function () {
-                $(".ui-widget-content").draggable({
-                    stop: function (event, ui) {
-                        const pieceId = event.target.id;
-                        const { left, top } = ui.position;
-
-                        // Enviar nova posição para o servidor somente se a conexão estiver aberta
-                        if (socket.readyState === WebSocket.OPEN) {
-                            socket.send(
-                                JSON.stringify({
-                                    type: "movePiece",
-                                    pieceId: pieceId,
-                                    x: left,
-                                    y: top,
-                                })
-                            );
-                        } else {
-                            console.log(
-                                "WebSocket não está aberto. Não é possível enviar a mensagem."
-                            );
-                        }
-                    },
-                });
-            });
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>

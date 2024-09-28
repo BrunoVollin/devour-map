@@ -13,3 +13,6 @@ https://brunovollin.github.io/devour-map/
 
 ### Game link on steam
 https://store.steampowered.com/app/1274570/DEVOUR/
+
+
+ngrok http --url=clean-relative-hen.ngrok-free.app 3000
