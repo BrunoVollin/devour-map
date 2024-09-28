@@ -63,7 +63,8 @@ function joinRoom() {
             "mb-4",
             "absolute",
             "top-2",
-            "left-2"
+            "left-2",
+            "z-10"
         );
         document.body.insertBefore(roomNameDisplay, document.body.firstChild);
     } else {

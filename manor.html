@@ -12,46 +12,50 @@
     <body>
         <div id="row">
             <div id="1" class="ui-widget-content">
-                <img src="images/manor/1.jpg" alt="" height="50" />
+                <img src="images/manor/1.jpg" alt="" class="manor-images"/>
             </div>
             <div id="2" class="ui-widget-content">
-                <img src="images/manor/2.jpg" alt="" height="50" />
+                <img src="images/manor/2.jpg" alt="" class="manor-images"/>
             </div>
             <div id="3" class="ui-widget-content">
-                <img src="images/manor/3.jpg" alt="" height="50" />
+                <img src="images/manor/3.jpg" alt="" class="manor-images"/>
             </div>
             <div id="4" class="ui-widget-content">
-                <img src="images/manor/4.jpg" alt="" height="50" />
+                <img src="images/manor/4.jpg" alt="" class="manor-images"/>
             </div>
             <div id="5" class="ui-widget-content">
-                <img src="images/manor/5.jpg" alt="" height="50" />
+                <img src="images/manor/5.jpg" alt="" class="manor-images"/>
             </div>
             <div id="6" class="ui-widget-content">
-                <img src="images/manor/6.jpg" alt="" height="50" />
+                <img src="images/manor/6.jpg" alt="" class="manor-images"/>
             </div>
             <div id="7" class="ui-widget-content">
-                <img src="images/manor/7.jpg" alt="" height="50" />
+                <img src="images/manor/7.jpg" alt="" class="manor-images"/>
             </div>
             <div id="8" class="ui-widget-content">
-                <img src="images/manor/8.jpg" alt="" height="50" />
+                <img src="images/manor/8.jpg" alt="" class="manor-images"/>
             </div>
             <div id="9" class="ui-widget-content">
-                <img src="images/manor/9.jpg" alt="" height="50" />
+                <img src="images/manor/9.jpg" alt="" class="manor-images" />
             </div>
             <div id="10" class="ui-widget-content">
-                <img src="images/manor/10.jpg" alt="" height="50" />
+                <img src="images/manor/10.jpg" alt="" class="manor-images"/>
             </div>
         </div>
-        <img src="images/manor/mapa.png" alt="Map" id="map" />
-        <img src="images/manor/corpos.png" class="absolute h-screen top-0 left-0" />
+        <img src="images/manor/mapa.png" alt="Map" id="manor-map" />
+        <img
+            src="images/manor/corpos.png"
+            class="absolute w-[320px] bottom-0 left-0"
+        />
 
         <div
             class="flex flex-col gap-2 border-2 p-2 absolute right-10 bottom-10"
         >
-            <p class="text-white">Join or create</p>
+            <p class="text-white">Game room</p>
             <label class="text-white">Name</label>
             <input type="text" id="fname" name="fname" />
-            <button class="bg-white">Join or Create</button>
+            <button class="bg-white" id="join_button">Join</button>
+            <button class="bg-white" id="create_button">Create</button>
         </div>
 
         <div
@@ -62,7 +66,6 @@
             <a href="manor.html" class="underline text-white">* Manor</a>
             <a href="index.html" class="text-red-500">* Inn</a>
         </div>
-
 
         <script src="script.js"></script>
     </body>
