@@ -62,11 +62,11 @@
         </div>
 
         <img src="mapa.png" alt="Map" id="map" />
-        <div class="flex flex-col gap-2 absolute right-10 bottom-10 ">
+        <div class="flex flex-col gap-2 absolute right-10 bottom-5 w-60">
             <form
                 action="https://www.paypal.com/donate"
                 method="post"
-                target="_top"
+                target="_blank"
             >
                 <input type="hidden" name="business" value="Q8ZXJF98BJLQA" />
                 <input type="hidden" name="no_recurring" value="0" />
@@ -75,23 +75,21 @@
                     type="submit"
                     name="submit"
                     title="PayPal - The safer, easier way to pay online!"
-                    class="bg-red-500 text-white p-2 cursor-pointer flex items-center gap-2 w-full hover:shadow-lg hover:opacity-80"
+                    class="bg-red-500 text-white p-2 cursor-pointer flex items-center gap-2 w-full hover:shadow-lg hover:opacity-80 text-center"
                 >
                     <i
                         class="fab fa-paypal"
                         title="Donate with PayPal"
                         style="font-size: 1.5rem"
                     ></i>
-                    Help us
+                    <p>Help us</p>
                 </button>
             </form>
-            <div
-                class="flex flex-col gap-2 border-2 p-2 "
-            >
+            <div class="flex flex-col gap-2 border-2 p-2">
                 <p class="text-white">Game room</p>
                 <label class="text-white">Name</label>
                 <div class="flex gap-2">
-                    <input type="text" id="fname" name="fname" />
+                    <input type="text" id="fname" name="fname" class="w-full" />
 
                     <i
                         class="fas fa-copy text-white cursor-pointer"
@@ -99,20 +97,42 @@
                         title="Copy to clipboard"
                     ></i>
                 </div>
-                <button class="bg-white hover:shadow-lg hover:opacity-80" id="join_button">Join</button>
-                <button class="bg-red-500 text-white hover:shadow-lg hover:opacity-80" id="create_button">
+                <button
+                    class="bg-white hover:shadow-lg hover:opacity-80"
+                    id="join_button"
+                >
+                    Join
+                </button>
+                <button
+                    class="bg-red-500 text-white hover:shadow-lg hover:opacity-80"
+                    id="create_button"
+                >
                     Create
                 </button>
             </div>
+            <p>
+                Develooped by
+                <a
+                    href="https://www.linkedin.com/in/brunovollin/"
+                    class="text-red-500"
+                    >Bruno Almeida
+                </a>
+            </p>
         </div>
 
         <div
-            class="flex flex-col absolute border-2 p-2 absolute right-10 top-10"
+            class="flex flex-col absolute border-2 p-2 absolute right-10 top-10 w-60 gap-2"
         >
             <p>Map List</p>
 
-            <a href="manor.html" class="text-red-500">* Manor</a>
-            <a href="index.html" class="underline text-white">* Inn</a>
+            <a href="manor.html" class="text-center text-white border-2"
+                >Manor</a
+            >
+            <a
+                href="index.html"
+                class="text-center text-white bg-red-500 hover:shadow-lg hover:opacity-80"
+                >Inn</a
+            >
         </div>
 
         <style></style>
