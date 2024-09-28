@@ -62,25 +62,48 @@
         </div>
 
         <img src="mapa.png" alt="Map" id="map" />
+        <div class="flex flex-col gap-2 absolute right-10 bottom-10 ">
+            <form
+                action="https://www.paypal.com/donate"
+                method="post"
+                target="_top"
+            >
+                <input type="hidden" name="business" value="Q8ZXJF98BJLQA" />
+                <input type="hidden" name="no_recurring" value="0" />
+                <input type="hidden" name="currency_code" value="BRL" />
+                <button
+                    type="submit"
+                    name="submit"
+                    title="PayPal - The safer, easier way to pay online!"
+                    class="bg-red-500 text-white p-2 cursor-pointer flex items-center gap-2 w-full hover:shadow-lg hover:opacity-80"
+                >
+                    <i
+                        class="fab fa-paypal"
+                        title="Donate with PayPal"
+                        style="font-size: 1.5rem"
+                    ></i>
+                    Help us
+                </button>
+            </form>
+            <div
+                class="flex flex-col gap-2 border-2 p-2 "
+            >
+                <p class="text-white">Game room</p>
+                <label class="text-white">Name</label>
+                <div class="flex gap-2">
+                    <input type="text" id="fname" name="fname" />
 
-        <div
-            class="flex flex-col gap-2 border-2 p-2 absolute right-10 bottom-10"
-        >
-            <p class="text-white">Game room</p>
-            <label class="text-white">Name</label>
-            <div class="flex gap-2">
-                <input type="text" id="fname" name="fname" />
-
-                <i
-                    class="fas fa-copy text-white cursor-pointer"
-                    onclick="copyToClipboard()"
-                    title="Copy to clipboard"
-                ></i>
+                    <i
+                        class="fas fa-copy text-white cursor-pointer"
+                        onclick="copyToClipboard()"
+                        title="Copy to clipboard"
+                    ></i>
+                </div>
+                <button class="bg-white hover:shadow-lg hover:opacity-80" id="join_button">Join</button>
+                <button class="bg-red-500 text-white hover:shadow-lg hover:opacity-80" id="create_button">
+                    Create
+                </button>
             </div>
-            <button class="bg-white" id="join_button">Join</button>
-            <button class="bg-red-500 text-white" id="create_button">
-                Create
-            </button>
         </div>
 
         <div
