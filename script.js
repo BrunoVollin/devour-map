@@ -39,9 +39,10 @@ function initializeWebSocket() {
     });
 }
 
-function joinRoom() {
+async function joinRoom() {
     if (socket.readyState === WebSocket.CLOSED) {
         initializeWebSocket();
+        await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
     const roomName = document.getElementById("fname").value;
