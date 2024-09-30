@@ -11,6 +11,10 @@ export default class FileGameRepository implements GameRepository {
         const newData: any[] = data.filter(
             (game: Game) => game.id !== jsonGame.id
         );
+        const oldGame = data.find((game: Game) => game.id === jsonGame.id);
+        jsonGame.updated_at = new Date();
+        jsonGame.created_at = oldGame.created_at;
+
         newData.push(jsonGame);
         await this.saveFile(newData);
     }
@@ -37,6 +41,10 @@ export default class FileGameRepository implements GameRepository {
         if (existingGame) {
             return;
         }
+
+        jsonGame.created_at = new Date();
+        jsonGame.updated_at = new Date();
+
         data.push(jsonGame);
         await this.saveFile(data);
     }
