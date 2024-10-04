@@ -1,7 +1,7 @@
 let socket; // Declare o socket como uma variável global
 
 function initializeWebSocket() {
-    socket = new WebSocket("wss://powerful-separately-hyena.ngrok-free.app");
+    socket = new WebSocket("wss://devourmap.nfexp.com.br/");
 
     socket.addEventListener("open", function () {
         console.log("Conectado ao servidor WebSocket");
