@@ -1,3 +1,0 @@
-Entrar na sala 
-
-Para entrar na sala o client deve enviar para o servidor uma mensagem com 
