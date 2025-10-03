@@ -1,7 +1,7 @@
 let socket; // Declare o socket como uma variável global
 
 function initializeWebSocket() {
-    socket = new WebSocket("wss://brunoprojects-back-devour-map.vcfgra.easypanel.host/");
+    socket = new WebSocket("ws://choice-collie-suitably.ngrok-free.app");
 
     socket.addEventListener("open", function () {
         console.log("Conectado ao servidor WebSocket");
