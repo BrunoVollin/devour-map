@@ -7,6 +7,13 @@ function initializeWebSocket() {
         console.log("Conectado ao servidor WebSocket");
         // Habilite o botão somente quando a conexão estiver aberta
         document.querySelector("button").disabled = false;
+        const params = new URLSearchParams(window.location.search);
+        const roomName = params.get("room");
+
+        if(roomName) {
+            document.getElementById("fname").value = roomName;
+            joinRoom();
+        }
     });
 
     socket.addEventListener("message", function (event) {
@@ -45,7 +52,9 @@ async function joinRoom() {
         await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
-    const roomName = document.getElementById("fname").value;
+    // const roomName = document.getElementById("fname").value;
+    const params = new URLSearchParams(window.location.search);
+    const roomName = params.get("room");
 
     if (!roomName || roomName.length < 6) {
         CrispyToast.error("Room name must have at least 6 characters");
@@ -112,9 +121,11 @@ const handleClickgenerateNewGame = () => {
 
     // 2. atualizar o input com o nome do jogo
     document.getElementById("fname").value = gameName;
+    window.history.pushState({}, "", "?game=" + gameName);
 
     // 3. entrar na sala
     joinRoom();
+
 };
 
 // Torna os elementos arrastáveis
@@ -145,6 +156,13 @@ $(function () {
     });
 });
 
+window.addEventListener("focus", () => {
+    console.log("✅ Janela ativa (selecionada)");
+    if (socket.readyState === WebSocket.CLOSED) {
+        location.reload();
+    } 
+});
+
 // Desabilita o botão inicialmente
 document.querySelector("button").disabled = true;
 document.querySelector("#join_button").addEventListener("click", joinRoom);
@@ -154,9 +172,6 @@ document
 
 const copyToClipboard = () => {
     var copyText = document.getElementById("fname");
-
-
-
     copyText.select();
     copyText.setSelectionRange(0, 99999); /* For mobile devices */
     navigator.clipboard.writeText(copyText.value).then(() => {
@@ -165,3 +180,4 @@ const copyToClipboard = () => {
         console.error('Failed to copy: ', err);
     });
 };
+
