@@ -121,7 +121,7 @@ const handleClickgenerateNewGame = () => {
 
     // 2. atualizar o input com o nome do jogo
     document.getElementById("fname").value = gameName;
-    window.history.pushState({}, "", "?game=" + gameName);
+    window.history.pushState({}, "", "?room=" + gameName);
 
     // 3. entrar na sala
     joinRoom();
