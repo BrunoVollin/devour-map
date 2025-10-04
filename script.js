@@ -188,12 +188,6 @@ const copyToClipboard = () => {
     });
 };
 
-function isDesktop() {
-    const ua = navigator.userAgent;
-    // Lista básica de dispositivos móveis
-    const mobileDevices = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    return !mobileDevices.test(ua);
-}
 
 function mostrarMensagemDesktop() {
     // Remove overlay anterior, se existir
@@ -210,6 +204,7 @@ function mostrarMensagemDesktop() {
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: #221f20;
@@ -218,11 +213,18 @@ function mostrarMensagemDesktop() {
             font-family: Arial, sans-serif;
         `;
 
-        const msg = document.createElement('div');
-        msg.textContent = 'Por favor, abra este site em um desktop para melhor experiência.';
-        msg.style.fontSize = '24px';
-        msg.style.color = '#7b7b7bff';
+        const img = document.createElement('img');
+        img.src = 'images/olho.png';
+        img.style.height="50px";
 
+        const msg = document.createElement('div');
+        msg.textContent = 'Please open this site on a desktop for a better experience.';
+        msg.style.fontSize = '24px';
+        msg.style.color = '#F44336';
+        msg.style.margin = '30px';
+        msg.style.fontFamily = 'serif';
+
+        overlay.appendChild(img);
         overlay.appendChild(msg);
         document.body.appendChild(overlay);
     }

@@ -17,6 +17,9 @@ export default class CreateGame {
         game.addPiece("8", 0, 7);
         game.addPiece("9", 0, 8);
         game.addPiece("10", 0, 9);
+        game.addPiece("11", 0, 10);
+        game.addPiece("12", 0, 11);
+        game.addPiece("13", 0, 12);
 
         await this.gameRepository.create(game);
 
