@@ -46,15 +46,16 @@ function initializeWebSocket() {
     });
 }
 
+
 async function joinRoom() {
     if (socket.readyState === WebSocket.CLOSED) {
         initializeWebSocket();
         await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
-    // const roomName = document.getElementById("fname").value;
     const params = new URLSearchParams(window.location.search);
     const roomName = params.get("room");
+
 
     if (!roomName || roomName.length < 6) {
         CrispyToast.error("Room name must have at least 6 characters");
@@ -128,6 +129,12 @@ const handleClickgenerateNewGame = () => {
 
 };
 
+function handleClickJoin() {
+    const gameName = document.getElementById("fname").value;
+    window.history.pushState({}, "", "?room=" + gameName);
+    joinRoom();
+}
+
 // Torna os elementos arrastáveis
 $(function () {
     $(".ui-widget-content").draggable({
@@ -165,7 +172,7 @@ window.addEventListener("focus", () => {
 
 // Desabilita o botão inicialmente
 document.querySelector("button").disabled = true;
-document.querySelector("#join_button").addEventListener("click", joinRoom);
+document.querySelector("#join_button").addEventListener("click", handleClickJoin);
 document
     .querySelector("#create_button")
     .addEventListener("click", handleClickgenerateNewGame);
