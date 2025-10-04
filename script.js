@@ -188,3 +188,46 @@ const copyToClipboard = () => {
     });
 };
 
+function isDesktop() {
+    const ua = navigator.userAgent;
+    // Lista básica de dispositivos móveis
+    const mobileDevices = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return !mobileDevices.test(ua);
+}
+
+function mostrarMensagemDesktop() {
+    // Remove overlay anterior, se existir
+    const overlayExistente = document.getElementById('desktop-overlay');
+    if (overlayExistente) overlayExistente.remove();
+
+    if (window.innerWidth <= 1024) { // desktop
+        const overlay = document.createElement('div');
+        overlay.id = 'desktop-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #221f20;
+            z-index: 9999;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        `;
+
+        const msg = document.createElement('div');
+        msg.textContent = 'Por favor, abra este site em um desktop para melhor experiência.';
+        msg.style.fontSize = '24px';
+        msg.style.color = '#7b7b7bff';
+
+        overlay.appendChild(msg);
+        document.body.appendChild(overlay);
+    }
+}
+
+// Executa ao carregar e ao redimensionar
+window.addEventListener('load', mostrarMensagemDesktop);
+window.addEventListener('resize', mostrarMensagemDesktop);
