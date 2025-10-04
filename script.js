@@ -178,11 +178,9 @@ document
     .addEventListener("click", handleClickgenerateNewGame);
 
 const copyToClipboard = () => {
-    var copyText = document.getElementById("fname");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /* For mobile devices */
-    navigator.clipboard.writeText(copyText.value).then(() => {
-        CrispyToast.success("Copied to clipboard");
+    var copyText = window.location.href;
+    navigator.clipboard.writeText(copyText).then(() => {
+        CrispyToast.success("Room link copied to clipboard");
     }).catch(err => {
         console.error('Failed to copy: ', err);
     });
