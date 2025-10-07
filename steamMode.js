@@ -62,23 +62,6 @@ async function updateUI () {
 
     if(roomNameDisplay) {
        roomNameDisplay.style.display = streamModeEnabled ? 'none' : 'block';
-        let roomNameDisplay2 = document.getElementById("roomNameDisplay2");
-        if(!roomNameDisplay2) {
-            roomNameDisplay2 = document.createElement("h1");
-            roomNameDisplay2.id = "roomNameDisplay2";
-            roomNameDisplay2.textContent = `Online in the room *******`;
-            roomNameDisplay2.classList.add(
-                "text-green-500",
-                "text-xl",
-                "mb-4",
-                "absolute",
-                "top-2",
-                "left-2",
-                "z-10"
-            );
-            document.body.insertBefore(roomNameDisplay2, document.body.firstChild);
-        }
-        roomNameDisplay2.style.display = streamModeEnabled ? 'block' : 'none';
     } else {
         await sleep(100)
         updateUI();
