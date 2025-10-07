@@ -1,148 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            http-equiv="Cache-Control"
-            content="no-cache, no-store, must-revalidate"
-        />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link
-            rel="stylesheet"
-            href="https://raheelize.github.io/CrispyToastJS/crispy-toast.css"
-        />
-        <script src="https://raheelize.github.io/CrispyToastJS/crispy-toast.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <link rel="icon" href="images/olho.png" type="image/x-icon" />
-        <title>Devour Map | Manor</title>
-    </head>
-    <body>
-        <div id="row">
-            <div id="1" class="ui-widget-content">
-                <img src="images/manor/1.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="2" class="ui-widget-content">
-                <img src="images/manor/2.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="3" class="ui-widget-content">
-                <img src="images/manor/3.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="4" class="ui-widget-content">
-                <img src="images/manor/4.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="5" class="ui-widget-content">
-                <img src="images/manor/5.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="6" class="ui-widget-content">
-                <img src="images/manor/6.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="7" class="ui-widget-content">
-                <img src="images/manor/7.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="8" class="ui-widget-content">
-                <img src="images/manor/8.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="9" class="ui-widget-content">
-                <img src="images/manor/9.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="10" class="ui-widget-content">
-                <img src="images/manor/10.jpg" alt="" class="manor-images" />
-            </div>
-            <div id="11" class="ui-widget-content">
-                <img src="images/manor/pa.png" alt="" height="50" />
-            </div>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://raheelize.github.io/CrispyToastJS/crispy-toast.css" />
+    <script src="https://raheelize.github.io/CrispyToastJS/crispy-toast.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="images/olho.png" type="image/x-icon" />
+    <title>Devour Map | Manor</title>
+</head>
+
+<body>
+    <div id="row">
+        <div id="1" class="ui-widget-content">
+            <img src="images/manor/1.jpg" alt="" class="manor-images" />
         </div>
-        <img src="images/manor/mapa.png" alt="Map" id="manor-map" />
-        <img
-            src="images/manor/corpos.png"
-            class="absolute w-[320px] bottom-0 left-0 z-[-999]"
-        />
-
-        <div class="flex flex-col gap-2 absolute right-10 bottom-5 w-60">
-            <form
-                action="https://www.paypal.com/donate"
-                method="post"
-                target="_blank"
-            >
-                <input type="hidden" name="business" value="Q8ZXJF98BJLQA" />
-                <input type="hidden" name="no_recurring" value="0" />
-                <input type="hidden" name="currency_code" value="BRL" />
-                <button
-                    type="submit"
-                    name="submit"
-                    title="PayPal - The safer, easier way to pay online!"
-                    class="bg-red-500 text-white p-2 cursor-pointer flex items-center gap-2 w-full hover:shadow-lg hover:opacity-80 text-center"
-                >
-                    <i
-                        class="fab fa-paypal"
-                        title="Donate with PayPal"
-                        style="font-size: 1.5rem"
-                    ></i>
-                    <p>Help us</p>
-                </button>
-            </form>
-            <div class="flex flex-col gap-2 border-2 p-2">
-                <p class="text-white">Game room</p>
-                <label class="text-white">Name</label>
-                <div class="flex gap-2">
-                    <input type="text" id="fname" name="fname" class="w-full" />
-
-                    <i
-                        class="fas fa-copy text-white cursor-pointer"
-                        onclick="copyToClipboard()"
-                        title="Copy to clipboard"
-                    ></i>
-                </div>
-                <button
-                    class="bg-white hover:shadow-lg hover:opacity-80"
-                    id="join_button"
-                >
-                    Join
-                </button>
-                <button
-                    class="bg-red-500 text-white hover:shadow-lg hover:opacity-80"
-                    id="create_button"
-                >
-                    Create
-                </button>
-            </div>
-            <p>
-                Developed by
-                <a
-                    href="https://www.linkedin.com/in/brunovollin/"
-                    class="text-red-500"
-                    >Bruno Almeida
-                </a>
-            </p>
+        <div id="2" class="ui-widget-content">
+            <img src="images/manor/2.jpg" alt="" class="manor-images" />
         </div>
+        <div id="3" class="ui-widget-content">
+            <img src="images/manor/3.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="4" class="ui-widget-content">
+            <img src="images/manor/4.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="5" class="ui-widget-content">
+            <img src="images/manor/5.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="6" class="ui-widget-content">
+            <img src="images/manor/6.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="7" class="ui-widget-content">
+            <img src="images/manor/7.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="8" class="ui-widget-content">
+            <img src="images/manor/8.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="9" class="ui-widget-content">
+            <img src="images/manor/9.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="10" class="ui-widget-content">
+            <img src="images/manor/10.jpg" alt="" class="manor-images" />
+        </div>
+        <div id="11" class="ui-widget-content">
+            <img src="images/manor/pa.png" alt="" height="50" />
+        </div>
+    </div>
+    <img src="images/manor/mapa.png" alt="Map" id="manor-map" />
+    <img src="images/manor/corpos.png" class="absolute w-[320px] bottom-0 left-0 z-[-999]" />
 
-        <div
-            class="flex flex-col absolute border-2 p-2 absolute right-10 top-10 w-60 gap-2"
-        >
-            <p>Map List</p>
+    <div class="flex flex-col gap-2 absolute right-10 bottom-5 w-60">
+        <button class="bg-white hover:shadow-lg hover:opacity-80" id="stream-status" onclick="toggleStreamMode()">
+            Enable Stream Mode
+        </button>
+        <form action="https://www.paypal.com/donate" method="post" target="_blank">
+            <input type="hidden" name="business" value="Q8ZXJF98BJLQA" />
+            <input type="hidden" name="no_recurring" value="0" />
+            <input type="hidden" name="currency_code" value="BRL" />
+            <button type="submit" name="submit" title="PayPal - The safer, easier way to pay online!"
+                class="bg-red-500 text-white p-2 cursor-pointer flex items-center gap-2 w-full hover:shadow-lg hover:opacity-80 text-center">
+                <i class="fab fa-paypal" title="Donate with PayPal" style="font-size: 1.5rem"></i>
+                <p>Help us</p>
+            </button>
+        </form>
+        <div class="flex flex-col gap-2 border-2 p-2">
+            <p class="text-white">Game room</p>
+            <label class="text-white">Name</label>
+            <div class="flex gap-2">
+                <input type="text" id="fname" name="fname" class="w-full" />
 
-            <a
-                href="manor.html"
-                class="text-center text-white bg-red-500 hover:shadow-lg hover:opacity-80"
-                >Manor</a
-            >
-            <a href="index.html" class="text-center text-white border-2
+                <i class="fas fa-copy text-white cursor-pointer" onclick="copyToClipboard()"
+                    title="Copy to clipboard"></i>
+            </div>
+            <button class="bg-white hover:shadow-lg hover:opacity-80" id="join_button">
+                Join
+            </button>
+            <button class="bg-red-500 text-white hover:shadow-lg hover:opacity-80" id="create_button">
+                Create
+            </button>
+        </div>
+        <p>
+            Developed by
+            <a href="https://www.linkedin.com/in/brunovollin/" class="text-red-500">Bruno Almeida
+            </a>
+        </p>
+    </div>
+
+    <div class="flex flex-col absolute border-2 p-2 absolute right-10 top-10 w-60 gap-2">
+        <p>Map List</p>
+
+        <a href="manor.html" class="text-center text-white bg-red-500 hover:shadow-lg hover:opacity-80">Manor</a>
+        <a href="index.html" class="text-center text-white border-2
             hover:shadow-lg hover:opacity-80
             ">Inn</a>
-        </div>
+    </div>
 
-        <script src="script.js?v=5"></script>
-    </body>
+    <script src="script.js?v=6"></script>
+    <script src="steamMode.js?v=6"></script>
+</body>
+
 </html>

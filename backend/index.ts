@@ -84,7 +84,7 @@ server.on("connection", (socket: any, req: any) => {
             if (message.type === "join") {
                 message as MessageJoin;
 
-                const roomName = message.room;
+                const roomName = message.room.replace(/#/g, "");
 
                 if (!rooms[roomName]) {
                     rooms[roomName] = new Set();

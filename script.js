@@ -7,8 +7,7 @@ function initializeWebSocket() {
         console.log("Conectado ao servidor WebSocket");
         // Habilite o botão somente quando a conexão estiver aberta
         document.querySelector("button").disabled = false;
-        const params = new URLSearchParams(window.location.search);
-        const roomName = params.get("room");
+        const roomName = getRoomFromUrl();
 
         if(roomName) {
             document.getElementById("fname").value = roomName;
@@ -46,6 +45,12 @@ function initializeWebSocket() {
     });
 }
 
+function getRoomFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const roomName = params.get("room").replace(/#/g, "") ;
+    return roomName;
+}
+
 
 async function joinRoom() {
     if (socket.readyState === WebSocket.CLOSED) {
@@ -53,8 +58,8 @@ async function joinRoom() {
         await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const roomName = params.get("room");
+
+    const roomName = getRoomFromUrl();
 
 
     if (!roomName || roomName.length < 6) {
@@ -85,7 +90,7 @@ async function joinRoom() {
             "z-10"
         );
         document.body.insertBefore(roomNameDisplay, document.body.firstChild);
-        CrispyToast.success(`Online in the room ${roomName}`);
+        CrispyToast.success(`Online in the room`);
     } else {
         console.log(
             "WebSocket não está aberto. Não é possível entrar na sala."
@@ -93,7 +98,6 @@ async function joinRoom() {
     }
 }
 
-// Inicializa a conexão WebSocket
 try {
     initializeWebSocket();
 } catch (err) {
@@ -135,7 +139,6 @@ function handleClickJoin() {
     joinRoom();
 }
 
-// Torna os elementos arrastáveis
 $(function () {
     $(".ui-widget-content").draggable({
         stop: function (event, ui) {
@@ -164,7 +167,6 @@ $(function () {
 });
 
 window.addEventListener("focus", () => {
-    console.log("✅ Janela ativa (selecionada)");
     if (socket.readyState === WebSocket.CLOSED) {
         location.reload();
     } 
@@ -188,7 +190,6 @@ const copyToClipboard = () => {
 
 
 function mostrarMensagemDesktop() {
-    // Remove overlay anterior, se existir
     const overlayExistente = document.getElementById('desktop-overlay');
     if (overlayExistente) overlayExistente.remove();
 
@@ -228,6 +229,7 @@ function mostrarMensagemDesktop() {
     }
 }
 
-// Executa ao carregar e ao redimensionar
 window.addEventListener('load', mostrarMensagemDesktop);
 window.addEventListener('resize', mostrarMensagemDesktop);
+
+
