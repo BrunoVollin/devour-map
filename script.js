@@ -37,6 +37,7 @@ function initializeWebSocket() {
     });
 
     socket.addEventListener("close", function () {
+        location.reload();
         console.log("Desconectado do servidor WebSocket");
         CrispyToast.warning("Desconnected from the server");
         const roomNameDisplay = document.getElementById("roomNameDisplay");
