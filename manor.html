@@ -59,7 +59,7 @@
     <img src="images/manor/mapa.png" alt="Map" id="manor-map" />
     <img src="images/manor/corpos.png" class="absolute w-[320px] bottom-0 left-0 z-[-999]" />
 
-    <div class="flex flex-col gap-2 absolute right-10 bottom-5 w-60">
+    <div class="flex flex-col gap-2 absolute right-10 bottom-5 w-60"  id="container">
         <button class="bg-white hover:shadow-lg hover:opacity-80" id="stream-status" onclick="toggleStreamMode()">
             Enable Stream Mode
         </button>
@@ -69,8 +69,8 @@
             <input type="hidden" name="currency_code" value="BRL" />
             <button type="submit" name="submit" title="PayPal - The safer, easier way to pay online!"
                 class="bg-red-500 text-white p-2 cursor-pointer flex items-center gap-2 w-full hover:shadow-lg hover:opacity-80 text-center">
-                <i class="fab fa-paypal" title="Donate with PayPal" style="font-size: 1.5rem"></i>
-                <p>Help us</p>
+                <!-- <i class="fab fa-paypal" title="Donate with PayPal" style="font-size: 1.5rem"></i> -->
+               <i class="fas fa-coffee"> </i> <p>Buy me a coffee</p>
             </button>
         </form>
         <div class="flex flex-col gap-2 border-2 p-2">
@@ -105,8 +105,10 @@
             ">Inn</a>
     </div>
 
-    <script src="script.js?v=7"></script>
-    <script src="steamMode.js?v=7"></script>
+    <script src="script.js?v=8"></script>
+    <script src="steamMode.js?v=8"></script>
+    <script src="modalinit.js?v=8"></script>
+    <script src="share.js?v=8"></script>
 </body>
 
 </html>

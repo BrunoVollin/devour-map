@@ -28,7 +28,6 @@ function toggleStreamMode() {
     console.log("Stream mode agora está", streamModeEnabled ? "habilitado" : "desabilitado");
 }
 
-// Atualiza algo na interface (exemplo opcional)
 async function updateUI () {
     const statusEl = document.getElementById("stream-status");
     const fname = document.getElementById("fname");
@@ -36,7 +35,6 @@ async function updateUI () {
     const params = new URLSearchParams(window.location.search);
     const roomName = params.get("room");
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-    console.log(10)
 
 
     const join_button = document.getElementById("join_button");
@@ -60,13 +58,15 @@ async function updateUI () {
         console.log(window.location.href);
     }
 
-    if(roomNameDisplay) {
-       roomNameDisplay.style.display = streamModeEnabled ? 'none' : 'block';
-    } else {
-        await sleep(100)
-        updateUI();
+    if(roomName) {
+        if(roomNameDisplay) {
+            roomNameDisplay.style.display = streamModeEnabled ? 'none' : 'block';
+        } else {
+            await sleep(100)
+            updateUI();
+        }
     }
-
+        
     if (fname) {
         fname.type = streamModeEnabled ? 'password' : "";
     }

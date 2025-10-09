@@ -8,10 +8,13 @@ function initializeWebSocket() {
         // Habilite o botão somente quando a conexão estiver aberta
         document.querySelector("button").disabled = false;
         const roomName = getRoomFromUrl();
-
+        console.log("Room from URL:", roomName);
         if(roomName) {
             document.getElementById("fname").value = roomName;
             joinRoom();
+        } else {
+            console.log("No room in URL, not joining.");
+            handleClickgenerateNewGame();
         }
     });
 
@@ -46,9 +49,15 @@ function initializeWebSocket() {
 }
 
 function getRoomFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const roomName = params.get("room").replace(/#/g, "") ;
-    return roomName;
+    try {
+
+        const params = new URLSearchParams(window.location.search);
+        const roomName = params.get("room").replace(/#/g, "") ;
+        return roomName;
+    } catch (err) {
+        console.error("Error getting room from URL:", err);
+        return null;
+    }
 }
 
 
